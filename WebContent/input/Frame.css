@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+#contents {
+  min-width: 1280px;
+}
+
+[class*="_inner"] {
+  width: auto;
+  margin: 10 px auto;
+}
+
+#searchCondition {
+  float: left;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 5px;
+  width: 400px;
+  background-image:
+    linear-gradient(to bottom, #ccf 0%, #fff 100%);
+}
+
+#searchResult {
+  float: left;
+  width: auto;
+  background-color: #5e6
+}
+

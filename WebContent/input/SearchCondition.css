@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+.kindOfBooks {
+  margin: 20px 0px 0px 10px;  
+}
+
+.kindOfBooks input {
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.conditions {
+  margin: 10px 0px 30px 30px;
+}
+
+.conditions input {
+  margin-top: 20px;
+  width: 250px;
+}

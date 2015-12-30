@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+.header {
+  padding: 4px;
+  background-color: #ccf;
+}
+.header h1 {
+  margine: 0;
+  font-size: 40px;
+}
