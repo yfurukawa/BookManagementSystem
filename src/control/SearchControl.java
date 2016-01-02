@@ -34,12 +34,11 @@ public class SearchControl extends HttpServlet {
 	    PrintWriter out = response.getWriter();
 	    
 	    responseFrame(request, response);
-	    out.println("<h2>ここに検索結果が表示されます。</h2>");
-		out.println("</div></div></div></form><footer></footer></body></html>");
+//	    out.println("<h2>ここに検索結果が表示されます。</h2>");
 	}
 	
     private void responseFrame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/input/SearchFrame.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Search");
         dispatcher.include(request, response);
     }
     

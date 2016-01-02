@@ -2,7 +2,9 @@ package input;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import domain.Book;
+import infrastructure.BookMapping;
+import infrastructure.H2DAO;
 
 /**
  * Servlet implementation class Search
@@ -32,6 +38,16 @@ public class Search extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    request.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html; charset=UTF-8");
+	    
+	    try {
+            List<Book> list = H2DAO.getAll("SELECT * FROM book where isbn = '9784844365105'", new BookMapping());
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("/input/SearchFrame.jsp");
+        } catch (SQLException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+	    
 	    PrintWriter out = response.getWriter();
 	    
 	    responseFrame(request, response);
@@ -45,7 +61,6 @@ public class Search extends HttpServlet {
 	            out.println(name + "=" + values[i]);
 	        }
 	    }
-	    out.println("</div></div></div></form><footer></footer></body></html>");
 	}
 	
 	    private void responseFrame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
