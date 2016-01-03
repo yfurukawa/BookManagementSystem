@@ -11,7 +11,7 @@ public class Book {
     private String isbn;
     private String name;
     private String author;
-    private int price;
+    private Integer price;
     /**
      * @return isbn
      */
@@ -51,7 +51,7 @@ public class Book {
     /**
      * @return price
      */
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
     /**
