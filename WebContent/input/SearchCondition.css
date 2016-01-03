@@ -34,3 +34,13 @@
 .conditions select {
   max-height: 30px;
 }
+
+h2 {
+  margin: 0px 0px 0px 0px;
+font-size: 18pt;
+}
+
+h3 {
+  font-size: 14pt;
+  margin-left: 30pt;
+}
