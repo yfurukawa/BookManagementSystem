@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+.searchResult table{
+  border-collapse: collapse;
+  border: solid 1px #aaa;
+}
+
+.searchResult th {
+  border: solid 1px #aaa;
+}
+
+.searchResult td {
+  border: solid 1px #aaa;
+  padding: 8px;
+  font-size: 12px;
+  text-align: left;
+  vertical-align: text-top;
+}
+
+.searchResult tbody > tr:nth-child(odd) > td {
+  background-color: #ffd;
+}
+
+.searchResult tbody > tr:nth-child(even) > td {
+  background-color: #efa;
+}
+ .searchResult {
+   margin: 0;
+ }
+
+.searchResult .zasshiResult h1 {
+  margin: 0;
+}
+
+.zasshiResult {
+  float: left;
+  margin: 20px 0px 0px 40px;
+}
