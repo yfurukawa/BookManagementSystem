@@ -7,9 +7,39 @@
 </div>
 
 <div class="conditions">
-ISBN ： <input type="text" name="isbn"><br>
-  書籍名 ： <input type="text" name="bookName"><br>
-  著　者 ： <input type="text" name="author"><br>
+<table>
+<tbody>
+<tr>
+    <td>ISBN ：</td>
+    <td><input type="text" name="isbn"></td>
+    <td><select name="isbn_condition">
+        <option value="contain" selected>を含む</option>
+        <option value="startWith">で始まる</option>
+        <option value="end">で終わる</option>
+        </select>
+    </td>
+</tr>
+ <tr>
+    <td>書籍名 ： </td>
+    <td><input type="text" name="bookName"></td>
+    <td><select name="name_condition">
+        <option value="contain" selected>を含む</option>
+        <option value="startWith">で始まる</option>
+        <option value="end">で終わる</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td>著　者 ： </td><td><input type="text" name="author"></td>
+    <td><select name="author_condition">
+        <option value="contain" selected>を含む</option>
+        <option value="startWith">で始まる</option>
+        <option value="end">で終わる</option>
+        </select>
+    </td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div class="actionButtons">
