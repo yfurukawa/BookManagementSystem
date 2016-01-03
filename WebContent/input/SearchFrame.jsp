@@ -9,7 +9,7 @@
 </head>
 
 <link rel="stylesheet" href="/book/input/Frame.css">
-
+<link rel="stylesheet" href="/book/input/SearchResult.css">
 <body>
 
 <!-- ヘッダ -->
@@ -23,26 +23,25 @@
                 <jsp:include page="SearchCondition.html"/>
             </article>
             
-            <div id="searchResult">
+            <div class="searchResult">
+            <div class="zasshiResult">
             <%
+            List<String> result = (List<String>)request.getAttribute("result");
+            for(int i = 0; i < result.size(); ++i) {
+                out.println(result.get(i));
+              }
+              %>
+              <!-- 
             List<Book> list = (List<Book>)request.getAttribute("list");
             if(list.isEmpty()) {
-            %>
-                <h2>検索</h2>
-            <%
               }
               else {
                 for(int i = 0; i < list.size(); ++i) {
                 Book book = list.get(i);
-            %>
-            <TR>
-                 <TD><%=book.getIsbn() %></TD>
-                 <TD><%=book.getName() %></TD>
-           </TR>
-                 <%
                    }
                  }
-                 %>
+                 -->
+                 </div>
             </div>
         </div>
     </div>

@@ -14,6 +14,23 @@
 }
 
 .conditions input {
-  margin-top: 20px;
+  margin-top: 10px;
   width: 250px;
+}
+
+.conditions table {
+    border: none;
+}
+
+.conditions th {
+  
+}
+
+.conditions td {
+  border: none;
+  vertical-align: text-top;
+}
+
+.conditions select {
+  max-height: 30px;
 }
