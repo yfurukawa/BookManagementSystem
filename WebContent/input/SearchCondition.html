@@ -12,26 +12,29 @@
 <tr>
     <td>ISBN ：</td>
     <td><input type="text" name="isbn"></td>
-    <td><select name="isbn_condition">
+    <td><form><select name="isbn_condition">
+        <option value="equal" >と一致する</option>
         <option value="contain" selected>を含む</option>
         <option value="startWith">で始まる</option>
         <option value="end">で終わる</option>
-        </select>
+        </select></form>
     </td>
 </tr>
- <tr>
+<tr>
     <td>書籍名 ： </td>
     <td><input type="text" name="bookName"></td>
-    <td><select name="name_condition">
+    <td><form><select name="bookName_condition">
+        <option value="equal" >と一致する</option>
         <option value="contain" selected>を含む</option>
         <option value="startWith">で始まる</option>
         <option value="end">で終わる</option>
-        </select>
+        </select></form>
     </td>
 </tr>
 <tr>
     <td>著　者 ： </td><td><input type="text" name="author"></td>
     <td><select name="author_condition">
+        <option value="equal" >と一致する</option>
         <option value="contain" selected>を含む</option>
         <option value="startWith">で始まる</option>
         <option value="end">で終わる</option>
