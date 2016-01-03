@@ -22,10 +22,8 @@ public class H2DAO {
      */
     public static Connection getConnection() {
         try {
-//            Class.forName("org.hsqldb.jdbcDriver");
             org.h2.Driver.load();
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
-//            Connection connection = DriverManager.getConnection("jdbc:h2:/localhost:9092", "sa", "");
             return connection;
         }
         catch (Exception e) {
