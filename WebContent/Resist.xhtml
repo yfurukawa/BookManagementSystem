@@ -34,6 +34,19 @@
                     </p:selectOneMenu></td>
                 </tr>
                 <tr>
+                    <td><img src="#{book.status}" alt="" width="16" height="16" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p:pickList id="simple" value="#{picklist.data}" var="data" itemLabel="#{data}" itemValue="#{data}" showSourceControls="true" showTargetControls="true"
+                        showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+                        <f:facet name="sourceCaption">Available</f:facet>
+                        <f:facet name="targetCaption">Selected</f:facet>
+                        </p:pickList>
+                    </td>
+                </tr>
+                <tr>
                     <td><p:outputLabel value="“à—e" /></td>
                     <td><h:outputText id="display" /><br />
                     <p:inputTextarea value="" label="test" required="true" counter="display" maxlength="30" counterTemplate="{0} characters remaining" /></td>
