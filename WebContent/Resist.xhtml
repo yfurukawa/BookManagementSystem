@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    >
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+    <div class="BookInformation">
+    <h:form >
+        <table>
+            <tbody>
+                <tr>
+                    <td><p:outputLabel value="書籍名" /></td>
+                    <td><p:inputText requiredMessage="Need to input" required="true" value="#{book.name}" /></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="ISBN" /></td>
+                    <td><p:inputMask value="#{book.isbn}" mask="999-9-99-999999-9"></p:inputMask></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="購入日" /></td>
+                    <td><p:calendar value="#{book.buyDate}" pages="3" pattern="yyyy/mm/dd" mindate="2016/04/01" /></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="種類" /></td>
+                    <td><p:selectOneMenu value="#{book.bookType}" filter="true" filterMatchMode="contains" height="60">
+                            <f:selectItems value="#{book.bookTypes}"></f:selectItems>
+                    </p:selectOneMenu></td>
+                </tr>
+                <tr>
+                    <td><p:outputLabel value="内容" /></td>
+                    <td><h:outputText id="display" /><br />
+                    <p:inputTextarea value="" label="test" required="true" counter="display" maxlength="30" counterTemplate="{0} characters remaining" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p:commandButton value="Resist" disabled="#{user.manager}" actionListener="#{resistringButtonView.buttonAction}" ajax="false" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </h:form>
+    </div>
+</h:body>
+</html>
