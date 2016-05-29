@@ -31,7 +31,20 @@ public class Book implements Serializable {
     private Date buyDate;
     private List<String> bookTypes;
     private String bookType;
+    private String status;
     
+    /**
+     * @return status
+     */
+    public String getStatus() {
+        return status;
+    }
+    /**
+     * @param status セットする status
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
     /**
      * 
      */
@@ -43,6 +56,8 @@ public class Book implements Serializable {
         bookTypes.add("開発プロセス");
         bookTypes.add("小説");
         bookTypes.add("ビジネス");
+        
+        setStatus("/resources/images/led_green.png");
     }
     /**
      * @return bookTypes
