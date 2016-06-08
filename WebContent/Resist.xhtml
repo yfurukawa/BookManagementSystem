@@ -48,8 +48,8 @@
                 </tr>
                 <tr>
                     <td><p:outputLabel value="“à—e" /></td>
-                    <td><h:outputText id="display" /><br />
-                    <p:inputTextarea value="" label="test" required="true" counter="display" maxlength="30" counterTemplate="{0} characters remaining" /></td>
+                    <td><h:outputText id="displayCounter" /><br />
+                    <p:inputTextarea value="" label="test" required="true" counter="displayCounter" maxlength="30" counterTemplate="{0} characters remaining" /></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -57,6 +57,27 @@
                 </tr>
             </tbody>
         </table>
+        
+    <p:growl id="msg" />
+ 
+    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+        <h:outputText value="Basic: " />
+        <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
+ 
+        <h:outputText value="Ajax: " />
+        <p:selectBooleanCheckbox value="#{selectBooleanView.value2}">
+            <p:ajax update="msg" listener="#{selectBooleanView.addMessage}" />
+        </p:selectBooleanCheckbox>
+    </h:panelGrid>
+ 
+    <p:commandButton value="Submit" icon="ui-icon-check" update="display" oncomplete="PF('dlg').show()" />
+ 
+    <p:dialog header="Values" modal="true" resizable="false" showEffect="fade" widgetVar="dlg">
+        <h:panelGrid columns="1" id="display">
+            <h:outputText value="Value 1: #{selectBooleanView.value1}" />
+            <h:outputText value="Value 2: #{selectBooleanView.value2}" />
+        </h:panelGrid>
+    </p:dialog>
     </h:form>
     </div>
 </h:body>

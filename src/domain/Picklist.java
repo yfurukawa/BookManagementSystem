@@ -65,6 +65,7 @@ public class Picklist implements Serializable {
      */
     public void setDataDist(List<String> dataDist) {
         this.dataDist = dataDist;
+        System.out.println(dataDist.get(1));
     }
 
     /**

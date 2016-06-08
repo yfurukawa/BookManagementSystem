@@ -3,6 +3,8 @@
  */
 package view;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -15,7 +17,12 @@ import javax.faces.event.ActionEvent;
  */
 @ManagedBean(name="resistringButtonView")
 @ViewScoped
-public class ResistringButtonView {
+public class ResistringButtonView implements Serializable{
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     /**
      * @param actionEvent
      */

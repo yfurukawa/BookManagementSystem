@@ -28,7 +28,7 @@ public class User implements Serializable {
      * 
      */
     public User(){
-        setManager("true");
+        setManager("false");
         setName("hoge");
     }
     /**
