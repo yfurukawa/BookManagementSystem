@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    >
+    
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:selectOneMenu id="field" value="#{selectOneMenuView.selectedField}">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItems value="#{selectOneMenuView.fields}" />
+            <p:ajax update="operator" listener="#{selectOneMenuView.changeOperator}" />
+        </p:selectOneMenu>
+        <p:selectOneMenu id="operator" value="#{selectOneMenuView.selectedOperator}" update="@this" >
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItems value="#{selectOneMenuView.operator}" />
+        </p:selectOneMenu>
+    </h:form>
+</h:body>
+</html>
