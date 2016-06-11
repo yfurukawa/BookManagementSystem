@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    >
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+    <div class="BookInformation">
+<h:form enctype="multipart/form-data">
+    <p:growl id="messages" showDetail="true" />
+ 
+    <p:fileUpload value="#{fileUploadBean.file}" mode="simple" skinSimple="true"/>
+ 
+    <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadBean.upload}" disabled="false" />
+</h:form>
+    </div>
+</h:body>
+</html>
