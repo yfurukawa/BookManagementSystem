@@ -14,14 +14,18 @@
 <h:body>
     <h:form>
         <p:selectOneMenu id="field" value="#{selectOneMenuView.selectedField}">
-            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem itemLabel="--- Select One ---" itemValue="" />
             <f:selectItems value="#{selectOneMenuView.fields}" />
             <p:ajax update="operator" listener="#{selectOneMenuView.changeOperator}" />
         </p:selectOneMenu>
-        <p:selectOneMenu id="operator" value="#{selectOneMenuView.selectedOperator}" update="@this" >
-            <f:selectItem itemLabel="Select One" itemValue="" />
+       
+        <p:selectOneMenu id="operator" value="#{selectOneMenuView.selectedOperator}">
+            <f:selectItem itemLabel="--- Select One ---" itemValue="" />
             <f:selectItems value="#{selectOneMenuView.operator}" />
         </p:selectOneMenu>
+        
+        <p:commandButton id="aa" ajax="false" value="Submit" actionListener="#{selectOneMenuView.submit}" render="text3message"/>
+        <h:message id="text3message" for="aa" />
     </h:form>
 </h:body>
 </html>

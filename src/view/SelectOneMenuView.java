@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 /**
@@ -15,14 +16,18 @@ import javax.faces.model.SelectItem;
  *
  */
 @ManagedBean
+@SessionScoped
 public class SelectOneMenuView {
     private String selectedField;
     private List<SelectItem> fields;
     private List<String> logicalOperatorFields;
-    private String selectedOperator;
+    private String selectedOperator = "na";
     private List<SelectItem> logicalOperator;
     private List<SelectItem> stringOperator;
-    private boolean isLogicalOperator = true;
+    private boolean isLogicalOperator = false;
+    private List<SelectItem> operator;
+    private List<SelectItem> defaultOperator;
+    private boolean isDefault = true;
     
     /**
      * 
@@ -53,6 +58,17 @@ public class SelectOneMenuView {
         stringOperator.add(new SelectItem("NotContain", "を含まない"));
         stringOperator.add(new SelectItem("startWith", "で始まる"));
         stringOperator.add(new SelectItem("endWith", "で終わる"));
+        
+        defaultOperator = new ArrayList<SelectItem>();
+        defaultOperator.add(new SelectItem("eq", "="));
+        defaultOperator.add(new SelectItem("lt", "<"));
+        defaultOperator.add(new SelectItem("le", "<="));
+        defaultOperator.add(new SelectItem("gt", ">"));
+        defaultOperator.add(new SelectItem("ge", ">="));
+        defaultOperator.add(new SelectItem("contain", "を含む"));
+        defaultOperator.add(new SelectItem("NotContain", "を含まない"));
+        defaultOperator.add(new SelectItem("startWith", "で始まる"));
+        defaultOperator.add(new SelectItem("endWith", "で終わる"));
     }
 
     /**
@@ -67,6 +83,15 @@ public class SelectOneMenuView {
         }
     }
 
+    /**
+     * 
+     */
+    public void submit() {
+        int i = 0;
+        i = i + 1;
+        System.out.println(selectedField);
+        System.out.println(selectedOperator);
+    }
     /**
      * @return selectedField
      */
@@ -141,14 +166,48 @@ public class SelectOneMenuView {
      * @return operator
      */
     public List<SelectItem> getOperator() {
+        if(this.isDefault()) {
+            this.setDefault(false);
+            setOperator(defaultOperator);
+        }
+        else if(isLogicalOperator) {
+            setOperator(logicalOperator);
+        }
+        else {
+            setOperator(stringOperator);
+        }
+        return operator;
+        /*
         if(isLogicalOperator) {
             return getLogicalOperator();
         }
         else {
             return getStringOperator();
         }
+        */
     }
 
+    /**
+     * @return isDefault
+     */
+    public boolean isDefault() {
+        return isDefault;
+    }
+
+    /**
+     * @param isDefault セットする isDefault
+     */
+    public void setDefault(boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    /**
+     * @param operator 
+     * 
+     */
+    public void setOperator(List<SelectItem> operator) {
+        this.operator = operator;
+    }
     /**
      * @return isLogicalOperator
      */
