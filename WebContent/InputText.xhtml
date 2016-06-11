@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    >
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:inputText id="pn" update="@this" type="text" value="#{inputView.value}" style="#{inputView.background}" >
+            <p:ajax update="pn" listener="#{inputView.validate}" />
+        </p:inputText><br/>
+    
+        <p:inputText id="h" update="@this" value="#{inputView.valueH}" style="#{inputView.backgroundForSize}">
+            <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
+        </p:inputText>
+        <p:inputText id="w" update="@this" value="#{inputView.valueW}" style="#{inputView.backgroundForSize}">
+            <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
+        </p:inputText>
+        <p:inputText id="d" update="@this" value="#{inputView.valueD}" style="#{inputView.backgroundForSize}">
+            <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
+        </p:inputText>
+    </h:form>
+</h:body>
+</html>
