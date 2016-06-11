@@ -6,12 +6,14 @@ package view;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  * @author vagrant
  *
  */
 @ManagedBean
+@SessionScoped
 public class InputView implements Serializable {
 
     /**
@@ -21,10 +23,10 @@ public class InputView implements Serializable {
     
     private String background = "background-color: #aa0000";
     private String backgroundForSize = "";
-    private String value;
-    private String valueH;
-    private String valueW;
-    private String valueD;
+    private String value = "";
+    private String valueH = "";
+    private String valueW = "";
+    private String valueD = "";
 
     /**
      * @return background
