@@ -11,7 +11,6 @@
 <title>Insert title here</title>
 </h:head>
 <h:body>
-    <div class="BookInformation">
 <h:form enctype="multipart/form-data">
     <p:growl id="messages" showDetail="true" />
  
@@ -19,6 +18,12 @@
  
     <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadBean.upload}" disabled="false" />
 </h:form>
-    </div>
+
+<h:form>
+    <p:fileUpload fileUploadListener="#{fileUploadBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
+           update="messages" sizeLimit="100000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+ 
+    <p:growl id="messages" showDetail="true" />
+</h:form>
 </h:body>
 </html>
