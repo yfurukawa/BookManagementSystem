@@ -42,12 +42,19 @@ public class FileUploadBean {
     }
      
     /**
+     * @param dir 
      * 
      */
-    public void upload() {
+    public void upload(String dir) {
         if(this.file != null) {
-            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesMessage msg = new FacesMessage("Succesful", file.getFileName() + dir + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            // Do what you want with the file
+            try {
+                copyFile(file.getFileName(), file.getInputstream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     
@@ -55,9 +62,9 @@ public class FileUploadBean {
      * @param event
      */
     public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");  
+        FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + event.getComponent().getId() + " is uploaded.");  
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        // Do what you want with the file        
+        // Do what you want with the file
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
         } catch (IOException e) {
