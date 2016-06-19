@@ -12,19 +12,60 @@
 </h:head>
 <h:body>
     <h:form>
-        <p:inputText id="pn" update="@this" type="text" value="#{inputView.value}" style="#{inputView.background}" >
-            <p:ajax update="pn" listener="#{inputView.validate}" />
-        </p:inputText><br/>
-    
-        <p:inputText id="h" update="@this" value="#{inputView.valueH}" style="#{inputView.backgroundForSize}">
-            <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
-        </p:inputText>
-        <p:inputText id="w" update="@this" value="#{inputView.valueW}" style="#{inputView.backgroundForSize}">
-            <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
-        </p:inputText>
-        <p:inputText id="d" update="@this" value="#{inputView.valueD}" style="#{inputView.backgroundForSize}">
-            <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
-        </p:inputText>
+        <h:panelGrid id="grid" columns="3" cellpadding="5">
+            <p:outputLabel value="Part Number" />
+            <p:inputText id="pn" update="@this" type="text" value="#{inputView.value}" style="#{inputView.background}" >
+                <p:ajax update="pn" listener="#{inputView.validate}" />
+            </p:inputText>
+            <p:outputLabel value="Part Number" />
+        
+            <p:outputLabel value="H" />
+            <p:inputText id="h" update="@this" value="#{inputView.valueH}" style="#{inputView.backgroundForSize}">
+                <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
+            </p:inputText>
+            <p:outputLabel value="Part Number" />
+            
+            <p:outputLabel value="W" />
+            <p:inputText id="w" update="@this" value="#{inputView.valueW}" style="#{inputView.backgroundForSize}">
+                <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
+            </p:inputText>
+            <p:outputLabel value="Part Number" />
+            
+            <p:outputLabel value="D" />
+            <p:inputText id="d" update="@this" value="#{inputView.valueD}" style="#{inputView.backgroundForSize}">
+                <p:ajax update="h w d" listener="#{inputView.validateForSize}" />
+            </p:inputText>
+            <p:outputLabel value="Part Number" />
+            
+            <p:outputLabel value="Authority" />
+            <p:row>
+                <p:outputLabel value="User " />
+                <p:selectBooleanCheckbox value="" />
+            </p:row>
+            <p:outputLabel value="asdfg" />
+            
+            <p:outputLabel value="" />
+            <p:row>
+                <p:outputLabel value="Input " />
+                <p:selectBooleanCheckbox label="Input" value="" />
+            </p:row>
+            <p:outputLabel value="" />
+            
+            <p:outputLabel value="" />
+            <p:row>
+                <p:outputLabel value="Approve " />
+                <p:selectBooleanCheckbox label="Approve" value="" />
+            </p:row>
+            <p:outputLabel value="" />
+            
+            <p:outputLabel value="" />
+            <p:row>
+                <p:outputLabel value="System Manage " />
+                <p:selectBooleanCheckbox label="System Manage" value="" />
+            </p:row>
+            <p:outputLabel value="" />
+            
+        </h:panelGrid>
     </h:form>
 </h:body>
 </html>
