@@ -6,6 +6,7 @@ package view;
 import java.io.Serializable;
 
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 
 /**
  * @author vagrant
@@ -32,6 +33,12 @@ public class RadioView implements Serializable {
         this.type = type;
     }
     
-    
+    /**
+     * 
+     * 
+     */
+    public void checkAuthority() {
+        
+    }
 
 }

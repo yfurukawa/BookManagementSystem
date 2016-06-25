@@ -23,6 +23,8 @@ public class Switches implements Serializable {
     
     private boolean wip;
     private boolean wipType = false;
+    private boolean img=false;
+    private String imgSrc="../img/1150_32.png";
     
     /**
      * @return wip
@@ -75,5 +77,44 @@ public class Switches implements Serializable {
             setWip(false);
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(getRadioEnable()));
+    }
+
+    /**
+     * @return img
+     */
+    public boolean getImg() {
+        return img;
+    }
+
+    /**
+     * @param img セットする img
+     */
+    public void setImg(boolean img) {
+        this.img = img;
+    }
+    /**
+     * 
+     */
+    public void changeImg() {
+        if(this.img) {
+            this.imgSrc="../img/1150.png";
+        }
+        else {
+            this.imgSrc="../img/1150_32.png";
+        }
+    }
+
+    /**
+     * @return imgSrc
+     */
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    /**
+     * @param imgSrc セットする imgSrc
+     */
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
     }
 }

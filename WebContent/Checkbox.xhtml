@@ -8,12 +8,13 @@
     >
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+<link rel="stylesheet" type="text/css" href="css/check.css" />
 <title>Insert title here</title>
 </h:head>
 <h:body>
     <h:form>
             <h:outputText value="WIP : " />
-            <p:selectBooleanCheckbox value="#{switches.wip}" >
+            <p:selectBooleanCheckbox value="#{switches.wip}" styleClass="switch">
                 <p:ajax update="console" listener="#{switches.changeState}" />
             </p:selectBooleanCheckbox>
 
@@ -26,6 +27,25 @@
         </p:selectOneRadio>
     </h:panelGrid>
     
+    <div class="indicator">
+        <h:graphicImage id="img" update="@this" url="#{switches.imgSrc}" for="imgSwitch" />
+        <p:selectBooleanCheckbox value="#{switches.img}" id="imgSwitch">
+            <p:ajax update="img" listener="#{switches.changeImg}" />
+        </p:selectBooleanCheckbox>
+    </div>
+            <p:growl id="message" life="2000" />
+        
+        <table>
+            <tr>
+                <td><h:outputText value="aaa" /></td>
+                <td>
+                    <p:commandLink id="F2000" update="message" actionListener="#{radioView.checkAuthority}">
+                        <h:outputText value="F2000" />
+                    </p:commandLink>
+                </td>
+            </tr>
+        </table>
+        
     </h:form>
 </h:body>
 </html>
