@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    >
+<h:head>
+    <script type="text/javascript">
+    <!--
+    function kakunin(url){
+        var hoge = confirm("ページを移動しますが構いませんか？");
+        if(hoge){
+            location.href = url
+                }
+        }
+    //-->
+    </script>
+    <script type="text/javascript">
+    <!--
+    function checkAuthority(url) {
+        if(!#{commandLinkController.useAuthority}) {
+        	var msg = alert("権限がないのでダメです");
+        }
+        else {
+        	location.href = url
+        }
+        
+    }
+    //-->
+    </script>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+<title>Insert title here</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:growl id="message" life="2000" />
+        
+        <table>
+            <tr>
+                <td><h:outputText value="aaa" /></td>
+                <td>
+                    <p:commandLink id="F2000" update="message" actionListener="#{commandLinkController.checkAuthority}" ajax="false" onclick="checkAuthority('./File.xhtml');return false;">
+                        <h:outputText value="F2000" />
+                    </p:commandLink>
+                </td>
+            </tr>
+            <tr>
+                <td>bbb</td>
+                <td>
+                    <p:link value="F2010" onclick="kakunin('http://www.infoseek.co.jp/');return false;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p:commandButton />
+                </td>
+            </tr>
+        </table>
+
+    </h:form>
+</h:body>
+</html>

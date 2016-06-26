@@ -24,7 +24,7 @@ public class Switches implements Serializable {
     private boolean wip;
     private boolean wipType = false;
     private boolean img=false;
-    private String imgSrc="../img/1150_32.png";
+    private String imgSrc="../img/Giraffe_32x32.png";
     
     /**
      * @return wip
@@ -97,10 +97,10 @@ public class Switches implements Serializable {
      */
     public void changeImg() {
         if(this.img) {
-            this.imgSrc="../img/1150.png";
+            this.imgSrc="../img/Elephant_32x32.png";
         }
         else {
-            this.imgSrc="../img/1150_32.png";
+            this.imgSrc="../img/Giraffe_32x32.png";
         }
     }
 
