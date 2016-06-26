@@ -1,0 +1,16 @@
+@CHARSET "Windows-31J";
+
+.indicator {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+}
+
+.indicator #j_id668222535_27d44409\:imgSwitch {
+  position: absolute;
+  top: 35px;
+  right: 40px;
+  transform: scale(5);
+  opacity: 0;
+}
