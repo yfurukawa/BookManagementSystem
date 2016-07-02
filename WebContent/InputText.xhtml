@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </h:head>
 <h:body>
+<div class="aa">
     <h:form>
         <h:panelGrid id="grid" columns="3" cellpadding="5">
             <p:outputLabel value="Part Number" />
@@ -64,8 +65,13 @@
                 <p:selectBooleanCheckbox label="System Manage" value="" />
             </p:row>
             <p:outputLabel value="" />
-            
+
+            <p:outputLabel value="Required" for="required" />
+            <p:inputText id="required" required="true" requiredMessage="hoge"/>
+            <p:message for="required" />
         </h:panelGrid>
+        <p:commandButton id="submitButton" value="Submit" update="grid" />
     </h:form>
+    </div>
 </h:body>
 </html>
