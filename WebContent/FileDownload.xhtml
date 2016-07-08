@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    >
+<h:head>
+<script type="text/javascript">
+function start() {
+    PF('statusDialog').show();
+}
+ 
+function stop() {
+    PF('statusDialog').hide();
+}
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+<link rel="stylesheet" type="text/css" href="css/check.css" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+<p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+<!--     <p:graphicImage name="/demo/images/ajaxloadingbar.gif" /> -->
+</p:dialog>
+
+    <h:form>
+
+    <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+        <p:fileDownload value="#{fileDownloadView.file}" />
+    </p:commandButton>
+        
+    </h:form>
+    
+</h:body>
+</html>
