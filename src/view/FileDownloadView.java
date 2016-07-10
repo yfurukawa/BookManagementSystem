@@ -13,7 +13,9 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -40,6 +43,9 @@ public class FileDownloadView implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     
+    @ManagedProperty("#{userBean}")
+    UserBean userBean;
+    
     /*
      * ダウンロード対象ファイルの実体
      */
@@ -54,7 +60,7 @@ public class FileDownloadView implements Serializable {
     /*
      * 1ファイルあたりの最大レコード数（仕様書規程数：10000）
      */
-    int maxNumberOfRecordsInFile = 100;
+    int maxNumberOfRecordsInFile = 10;
     
     /*
      * 生成したファイルの保存先ディレクトリ
@@ -86,7 +92,7 @@ public class FileDownloadView implements Serializable {
     
     
     /**
-     * 
+     * コンストラクタ
      */
     public FileDownloadView() {
         mimeCorrection = new HashMap<String, String>();
@@ -95,52 +101,92 @@ public class FileDownloadView implements Serializable {
     }
     
     /**
+     * ファイル取得.
+     * Web画面の「Export TSV」ボタンクリックで本メソッドが呼び出されます。
+     * 本メソッドはtsvまたはzipファイルの生成メソッドを呼び出し、ファイルを生成した後、
+     * ファイルがダウンロードできるよう準備します。
+     * 
      * @return file
      */
     public StreamedContent getFile() {
         prepareSampleData();
+        prepareBaseFilename();
         createExportFile();
         prepareDownloadFile();
         return file;
     }
 
+    /**
+     * @return userBean
+     */
+    public UserBean getUserBean() {
+        return userBean;
+    }
+
+    /**
+     * @param userBean
+     */
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
+    }
+
+    /**
+     * 生成されたファイルをストリームコンテンツとしてダウンロード可能な状態で準備します.
+     */
     private void prepareDownloadFile() {
         InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/output/" + createdFilename);
         file = new DefaultStreamedContent(stream, mimeType, createdFilename);
     }
     
 
+    /*
+     * 
+     */
     private void createExportFile() {
-        List<File> outputFiles = new ArrayList<File>();
         if( tsvStringOfRecord.size() > maxNumberOfRecordsInFile ) {
-            for(int fileNumber = 1; fileNumber <= calculateMaxFuleNumber(); ++fileNumber) {
-                List<String> tmpRecord = new ArrayList<String>();
-                int startIndex = maxNumberOfRecordsInFile * (fileNumber - 1);
-                int endIndex = startIndex + maxNumberOfRecordsInFile;
-                for(int index = startIndex; index < endIndex && index < tsvStringOfRecord.size(); ++ index) {
-                    tmpRecord.add(tsvStringOfRecord.get(index));
-                }
-                // ファイルオブジェクトの生成
-                File outputFile = new File(outputDirectory + "test_" + String.valueOf(fileNumber) + ".tsv");
-                outputFiles.add(outputFile);
-                createSingleTsvFile( outputFile, tmpRecord );
-            }
-            
-            try {
-                createdFilename = "test.zip";
-                mimeType = mimeCorrection.get("zip");
-                createZip(outputFiles, outputDirectory + createdFilename);
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
+            createDownloadZipFile();
         }
         else {
-            createdFilename = "test.tsv";
+            createDownloadTsvFile();
+        }
+    }
+
+    /**
+     * 
+     */
+    private void createDownloadTsvFile() {
+        createdFilename = baseFilename + ".tsv";
+        // ファイルオブジェクトの生成
+        File outputFile = new File(outputDirectory + createdFilename);
+        mimeType = mimeCorrection.get("tsv");
+        createSingleTsvFile( outputFile, tsvStringOfRecord );
+    }
+
+    /**
+     * 
+     */
+    private void createDownloadZipFile() {
+        List<File> outputFiles = new ArrayList<File>();
+        for(int fileNumber = 1; fileNumber <= calculateMaxFuleNumber(); ++fileNumber) {
+            List<String> tmpRecord = new ArrayList<String>();
+            int startIndex = maxNumberOfRecordsInFile * (fileNumber - 1);
+            int endIndex = startIndex + maxNumberOfRecordsInFile;
+            for(int index = startIndex; index < endIndex && index < tsvStringOfRecord.size(); ++ index) {
+                tmpRecord.add(tsvStringOfRecord.get(index));
+            }
             // ファイルオブジェクトの生成
-            File outputFile = new File(outputDirectory + createdFilename);
-            mimeType = mimeCorrection.get("tsv");
-            createSingleTsvFile( outputFile, tsvStringOfRecord );
+            File outputFile = new File(outputDirectory + baseFilename + "_" + String.valueOf(fileNumber) + ".tsv");
+            outputFiles.add(outputFile);
+            createSingleTsvFile( outputFile, tmpRecord );
+        }
+        
+        try {
+            createdFilename = baseFilename + ".zip";
+            mimeType = mimeCorrection.get("zip");
+            createZip(outputFiles, outputDirectory + createdFilename);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -211,6 +257,19 @@ public class FileDownloadView implements Serializable {
         for(count = 0; count < 100; ++count) {
             tsvStringOfRecord.add(String.valueOf(count));
         }
+        
+    }
+    
+    private void prepareBaseFilename() {
+        baseFilename = "MaterialAdoptionList" + "_" + userBean.getUserId() + "_" + createDateString();
+    }
+    
+    private String createDateString() {
+        Calendar c = Calendar.getInstance();
+
+        //フォーマットパターンを指定して表示する
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        return sdf.format(c.getTime());
         
     }
 }
