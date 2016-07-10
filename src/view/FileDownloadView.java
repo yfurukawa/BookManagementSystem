@@ -14,7 +14,9 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -37,26 +39,59 @@ public class FileDownloadView implements Serializable {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private StreamedContent file;
-    private List<String> tsvStringOfRecord;
-    int maxNumberOfRecordsInFile = 100;
-    String outputDirectory = "/home/vagrant/git/BookManagementSystem/WebContent/resources/output/";
-    String outputFilename;
-    String zippedFilename;
-    String createdFilename;
-    String mimeType;
-    /**
-     * 
+    
+    /*
+     * ダウンロード対象ファイルの実体
      */
-    public void exportFile() {
-        
-    }
+    private StreamedContent file;
+    
+    /*
+     * 項目抽出条件でselectされた最新のMaterial Adoptionリスト.
+     * レコードをtsv形式にまとめたもの
+     */
+    private List<String> tsvStringOfRecord;
+    
+    /*
+     * 1ファイルあたりの最大レコード数（仕様書規程数：10000）
+     */
+    int maxNumberOfRecordsInFile = 100;
+    
+    /*
+     * 生成したファイルの保存先ディレクトリ
+     */
+    String outputDirectory = "/home/vagrant/git/BookManagementSystem/WebContent/resources/output/";
+    
+    /*
+     * 最終的に生成されるファイルの名称.
+     * ファイル名にはファイルパスは含まれない.
+     */
+    String createdFilename;
+    
+    /*
+     * 生成されるファイルの名称部分.
+     * 拡張子は含まれない.
+     */
+    String baseFilename;
+    
+    /*
+     * 生成したファイルのMIMEタイプ
+     * tsv : text/tab-separated-values
+     * zip : application/x-zip-compressed
+     */
+    String mimeType;
+    /*
+     * MIMEタイプのコレクション
+     */
+    Map<String, String> mimeCorrection;
+    
     
     /**
      * 
      */
     public FileDownloadView() {
-
+        mimeCorrection = new HashMap<String, String>();
+        mimeCorrection.put("tsv", "text/tab-separated-values");
+        mimeCorrection.put("zip", "application/x-zip-compressed");
     }
     
     /**
@@ -85,16 +120,15 @@ public class FileDownloadView implements Serializable {
                 for(int index = startIndex; index < endIndex && index < tsvStringOfRecord.size(); ++ index) {
                     tmpRecord.add(tsvStringOfRecord.get(index));
                 }
-                outputFilename = outputDirectory + "test_" + String.valueOf(fileNumber) + ".tsv";
                 // ファイルオブジェクトの生成
-                File outputFile = new File(outputFilename);
+                File outputFile = new File(outputDirectory + "test_" + String.valueOf(fileNumber) + ".tsv");
                 outputFiles.add(outputFile);
                 createSingleTsvFile( outputFile, tmpRecord );
             }
             
             try {
                 createdFilename = "test.zip";
-                mimeType = "application/x-zip-compressed";
+                mimeType = mimeCorrection.get("zip");
                 createZip(outputFiles, outputDirectory + createdFilename);
             }
             catch(IOException e) {
@@ -105,7 +139,7 @@ public class FileDownloadView implements Serializable {
             createdFilename = "test.tsv";
             // ファイルオブジェクトの生成
             File outputFile = new File(outputDirectory + createdFilename);
-            mimeType = "text/tab-separated-values";
+            mimeType = mimeCorrection.get("tsv");
             createSingleTsvFile( outputFile, tsvStringOfRecord );
         }
     }
