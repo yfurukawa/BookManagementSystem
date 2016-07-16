@@ -1,0 +1,37 @@
+@CHARSET "Windows-31J";
+
+.primeRadio {
+
+}
+
+.primeRadio td:nth-child(1) .ui-icon-bullet {
+  background-color: blue;
+}
+
+.primeRadio td:nth-child(3) .ui-icon-bullet {
+  background-color: red;
+}
+
+.jsfRadio {
+
+}
+
+.jsfRadio (1): {
+  background-color: blue;
+}
+
+
+.ui-radiobutton-icon {
+  background-color: beige;
+}
+
+.jsfRadio > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1)  {
+  background-color: red;
+  transform: scale(2);
+}
+
+.jsfRadio > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > label:nth-child(2) {
+  color: red;
+  //visibility: hidden;
+  display: -moz-popup;
+}
