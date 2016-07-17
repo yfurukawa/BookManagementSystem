@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    >
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+<link rel="stylesheet" type="text/css" href="css/radio.css" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:calendar id="beginDate" value="#{calendarView.dateBegin}" maxdate="#{calendarView.dateEnd}" pattern="yyyy/mm/dd" 
+            update="@this"
+            showButtonPanel="true" navigator="true" >
+            <p:ajax event="dateSelect" update="endDate" listener="#{calendarView.limitBeginDate}" />
+        </p:calendar>
+        <br/>
+        <p:calendar id="endDate" value="#{calendarView.dateEnd}" mindate="#{calendarView.dateBegin}" pattern="yyyy/mm/dd" update="@this" >
+            <p:ajax event="dateSelect" update="beginDate" listener="#{calendarView.limitEndDate}" />
+        </p:calendar>
+        
+        <p:commandButton actionListener="#{calendarView.check}" />
+    </h:form>
+</h:body>
+</html>
